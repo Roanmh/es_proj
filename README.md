@@ -2,6 +2,11 @@
 
 ## Structure
 
+### Admin Interface
+
+User: `admin`
+Pass: `admin`
+
 TODO
 
 ## Process

@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <!-- Style lifted from W3schools tutorial: https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro -->
+        <style>
+         table {
+             font-family: arial, sans-serif;
+             border-collapse: collapse;
+             width: 100%;
+         }
+
+         td, th {
+             border: 1px solid #dddddd;
+             text-align: left;
+             padding: 8px;
+         }
+        </style>
+    </head>
+    <body>
+        {% if property %}
+        <h2>Property</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Address</th>
+                <th>Annual KWH</th>
+                <th>Date Posted</th>
+            </tr>
+            <tr>
+                <td>{{ property.id }}</td>
+                <td>{{ property.address }}</td>
+                <td>{{ property.annual_kwh }}</td>
+                <td>{{ property.date_posted }}</td>
+            </tr>
+        </table>
+        <h2>Owner</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Date Joined</th>
+            </tr>
+            <tr>
+                <td>{{ property.consumer.id }}</td>
+                <td>
+                    {{ property.consumer.last_name }}, {{ property.consumer.first_name }}
+                </td>
+                <td>{{ property.consumer.email }}</td>
+                <td>{{ property.consumer.phone }}</td>
+                <td>{{ property.consumer.date_joined }}</td>
+            </tr>
+        </table>
+        <h2>Quotes</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Installer</th>
+                <th>Cost</th>
+                <th>Panel Brand</th>
+                <th>Panel Type</th>
+                <th>Date Offered</th>
+                <th>Date Updated</th>
+            </tr>
+            {% for quote in quote_list %}
+            <tr>
+                <td>{{ quote.id }}</td>
+                <td>{{ quote.installer }}</td>
+                <td>{{ quote.cost }}</td>
+                <td>{{ quote.panel_brand }}</td>
+                <td>{{ quote.panel_type }}</td>
+                <td>{{ quote.date_offered }}</td>
+                <td>{{ quote.date_updated }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No properties are available.</p>
+        {% endif %}
+    </body>
+</html>

@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <!-- Style lifted from W3schools tutorial: https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro -->
+        <style>
+         table {
+             font-family: arial, sans-serif;
+             border-collapse: collapse;
+             width: 100%;
+         }
+
+         td, th {
+             border: 1px solid #dddddd;
+             text-align: left;
+             padding: 8px;
+         }
+
+         tr:nth-child(even) {
+             background-color: #dddddd;
+         }
+        </style>
+    </head>
+    <body>
+        {% if property_list %}
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Owner</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Date Joined</th>
+                <th>Address</th>
+                <th>Annual KWH</th>
+                <th>Date Posted</th>
+            </tr>
+            {% for property in property_list %}
+            <tr>
+                <td><a href="{% url 'picosage:property_details' property.id %}">
+                    {{ property.id }}</a>
+                    <td>
+                        {{ property.consumer.last_name }}, {{ property.consumer.first_name }}
+                    </td>
+                    <td>{{ property.consumer.email }}</td>
+                    <td>{{ property.consumer.phone }}</td>
+                    <td>{{ property.consumer.date_joined }}</td>
+                    <td>{{ property.address }}</td>
+                    <td>{{ property.annual_kwh }}</td>
+                    <td>{{ property.date_posted }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No properties are available.</p>
+        {% endif %}
+    </body>
+</html>
